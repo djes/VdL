@@ -392,7 +392,8 @@ chm <- rasterize_canopy(ctg_filtero, 0.25, pitfree(c(0, 2, 5, 10, 15), c(3,1), s
 #******************************************************************************
 
 # Lissage du CHM (optionnel mais recommandé)
-# Fonction focal()
+# Attention, cette étape ne prend pas en charge les buffers, il peut en 
+# résulter des artefacts au niveau des bordures des tuiles
 
 #******************************************************************************
 
