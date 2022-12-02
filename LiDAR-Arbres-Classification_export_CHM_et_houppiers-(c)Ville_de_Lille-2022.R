@@ -392,10 +392,17 @@ chm <- rasterize_canopy(ctg_filtero, 0.25, pitfree(c(0, 2, 5, 10, 15), c(3,1), s
 #******************************************************************************
 
 # Lissage du CHM (optionnel mais recommandé)
-# Attention, cette étape ne prend pas en charge les buffers, il peut en 
-# résulter des artefacts au niveau des bordures des tuiles
 
 #******************************************************************************
+
+ker = matrix(1, 5, 5)
+r <- raster("7_chm/2.0-42/0.25/rasterize_canopy.vrt")
+#nchm <- focal(r, w = ker, fun = median, na.rm = TRUE, filename = "7_chm/chm_focal.gid", overwrite = TRUE)
+nchm <- focal(r, w = ker, fun = median, na.rm = TRUE, filename = "7_chm/chm_focal.tif", overwrite = TRUE)
+
+#--- Variante
+# Attention, celle-ci ne prend pas en charge les buffers, il peut en 
+# résulter des artefacts au niveau des bordures des tuiles
 
 #f = list.files("7_chm/2.0-42/0.5/", pattern = "*.tif")
 f = list.files("7_chm/2.0-42/0.25/", pattern = "*.tif")
@@ -441,7 +448,7 @@ for( i in 1:length(f)){
 #******************************************************************************
 
 # chm <- raster("7_chm/rasterize_canopy.vrt")
-# writeRaster(nchm, "7_chm/chm_filtered_focal.tif")
+# writeRaster(nchm, "7_chm/chm_focal.tif")
 
 #******************************************************************************
 
@@ -491,9 +498,9 @@ ctg_ttops <- locate_trees(ctg_retile , lmf(ws = f, hmin = 3.5, shape = "circular
 ctg_retile <- readLAScatalog("6_filterb/2.0-42")
 #ctg_retile <- readLAScatalog("6_filterb/3.5-42")
 #opt_restart(ctg_retile) <- 29
-chm <- raster("7_chm/2.0-42/0.25/focal5x5/rasterize_canopy.vrt")
+#chm <- raster("7_chm/2.0-42/0.25/focal5x5/rasterize_canopy.vrt")
 #chm <- raster("7_chm/2.0-42/0.5/rasterize_canopy.vrt")
-#chm <- raster("7_chm/chm_filtered_focal.tif")
+chm <- raster("7_chm/chm_focal.tif")
 opt_laz_compression(ctg_retile) <- TRUE
 opt_filter(ctg_retile) <- "-drop_withheld"
 opt_chunk_buffer(ctg_retile) <- 30
