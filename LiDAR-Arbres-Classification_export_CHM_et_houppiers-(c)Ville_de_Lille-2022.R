@@ -10,7 +10,10 @@
 #     Ville de Lille - 2022
 #
 # Basé sur le package R "lidR" par Jean-Romain Roussel 
+#
 # Testé avec les données LiDAR de la Métropole Européenne de Lille
+#
+# Merci à J.R. Roussel, Jean Roc Morréale et à Serge Hombert
 #
 # Installer R et RTools
 # Installer les plugins 'remotes::install_github("Jean-Romain/lidRplugins")'
@@ -46,6 +49,8 @@ library(progress)
 library(RSQLite)
 library(EBImage)
 library(terra)
+
+paths <- ""
 
 #******************************************************************************
 
@@ -492,6 +497,7 @@ ctg_ttops <- locate_trees(ctg_retile , lmf(ws = f, hmin = 3.5, shape = "circular
 
 # Segmentation du nuage de points par arbre
 # Algo watershed (voir note)
+# D'autres algorithmes basés sur le nuage de points sont disponibles 
 
 #******************************************************************************
 
