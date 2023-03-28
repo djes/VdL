@@ -10,15 +10,23 @@
 #     Ville de Lille - 2022
 #
 # Basé sur le package R "lidR" par Jean-Romain Roussel 
+# https://github.com/r-lidar/lidR
 #
 # Testé avec les données LiDAR de la Métropole Européenne de Lille
 #
-# Merci à J.R. Roussel, Jean Roc Morréale et à Serge Hombert
+# Merci à J.R. Roussel, Jean-Roc Morréale et à Serge Hombert
 #
-# Installer R et RTools
-# Installer les plugins 'remotes::install_github("Jean-Romain/lidRplugins")'
+# Installer R 
+#
+# Eventuellement installer RTools pour compiler les dernières versions des packages
+#  à partir des sources (voir le site de RTools)
+#
 # Installer et charger les packages lidR, RCSF, sf, mapview, remotes, raster, 
-# spatialEco, terra,lidRplugins, EBImage (https://github.com/aoles/EBImage)
+# rasterVis, spatialEco, RSQLite, EBImage, progress, terra 
+# -> install.packages("lidR", "RSCF", "sf", "mapview", "remotes", ...)
+#
+# Eventuellement installer lidRplugins, EBImage (https://github.com/aoles/EBImage)
+#  -> 'remotes::install_github("Jean-Romain/lidRplugins")
 #
 # Quelques fonctions utiles...
 # las_check(las)
@@ -26,6 +34,7 @@
 # rm(obj)
 # str(obj)
 # las@data : pour connaître les attributs
+# las@data$treeID
 # mesure du temps de traitement avec system.time()
 #
 #******************************************************************************
@@ -47,8 +56,8 @@ library(spatialEco)
 library(rasterVis)
 library(progress)
 library(RSQLite)
-library(EBImage)
 library(terra)
+#library(EBImage)
 
 paths <- ""
 
