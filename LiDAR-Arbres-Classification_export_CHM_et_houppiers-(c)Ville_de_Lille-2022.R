@@ -9,6 +9,9 @@
 #     Service des Risques Urbains et Sanitaires 
 #     Ville de Lille - 2022
 #
+# License GNU General Public License (GPLv3) 
+# https://www.gnu.org/licenses/quick-guide-gplv3.fr.html
+#
 # Basé sur le package R "lidR" par Jean-Romain Roussel 
 # https://github.com/r-lidar/lidR
 #
